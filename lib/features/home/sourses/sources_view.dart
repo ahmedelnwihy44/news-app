@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news/core/models/article_model.dart';
-import 'package:news/core/models/categories_model.dart';
 import 'package:news/core/models/source_model.dart';
 import 'package:news/core/resources/colors.dart';
 import 'package:news/features/home/sourses/article_item.dart';
 
 class SourcesView extends StatefulWidget {
-  final CategoriesModel category;
-   SourcesView({super.key, required this.category});
+   SourcesView({super.key});
 
   @override
   State<SourcesView> createState() => _SourcesViewState();
