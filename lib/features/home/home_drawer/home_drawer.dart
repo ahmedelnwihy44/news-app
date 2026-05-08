@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news/core/resources/colors.dart';
-import 'package:news/core/routes/routes_manager.dart';
+import 'package:news/providers/home_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var homeProvider=Provider.of<HomeProvider>(context);
     return Drawer(
       backgroundColor: ColorsManager.black,
       child: Column(
@@ -23,7 +25,8 @@ class HomeDrawer extends StatelessWidget {
           SizedBox(height: 19.h,),
           InkWell(
             onTap: (){
-              Navigator.pushReplacementNamed(context, RoutesManager.home);
+              homeProvider.goToCategoriesView();
+              Navigator.pop(context);
             },
             child: Row(
               children: [

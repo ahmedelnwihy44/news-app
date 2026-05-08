@@ -22,9 +22,7 @@ class _CategoriesViewState extends State<CategoriesView> {
             SizedBox(height: 16.h,),
             Expanded(
               child: ListView.separated(
-                  itemBuilder: (context,index)=> InkWell(
-                    onTap: (){},
-                      child: CategoriesItem(category: CategoriesModel.categories[index])),
+                  itemBuilder: (context,index)=> CategoriesItem(category: CategoriesModel.categories[index]),
                   separatorBuilder: (context,index)=> SizedBox(height: 16.h,),
                   itemCount: CategoriesModel.categories.length,
               ),
