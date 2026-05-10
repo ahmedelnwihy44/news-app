@@ -11,7 +11,7 @@ class HomeProvider extends ChangeNotifier{
 
   void goToSourcesView(CategoriesModel category){
     title=category.title;
-    homeView = SourcesView();
+    homeView = SourcesView(category: category,);
     notifyListeners();
   }
   void goToCategoriesView(){
