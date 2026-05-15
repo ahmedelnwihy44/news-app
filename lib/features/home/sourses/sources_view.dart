@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news/api/api_services.dart';
+import 'package:news/api/models/article_response/Article_response.dart';
+import 'package:news/api/models/article_response/Articles.dart';
 import 'package:news/api/models/sources_respons/Source.dart';
+import 'package:news/api/models/sources_respons/Sources_response.dart';
 import 'package:news/core/models/categories_model.dart';
 import 'package:news/core/resources/colors.dart';
+import 'package:news/features/home/sourses/article_item.dart';
 
 class SourcesView extends StatefulWidget {
    const SourcesView({super.key, required this.category});
@@ -14,16 +18,32 @@ final CategoriesModel category;
   State<SourcesView> createState() => _SourcesViewState();
 }
 
-class _SourcesViewState extends State<SourcesView> {
-   @override
-   void initState() {
-     super.initState();
-     ApiServices.getSources(CategoriesModel.categories[0]).then((value) {
-       print('sources: ${value.sources?.length}');
-     }).catchError((e) {
-       print('error: $e');
-     });
-   }
+class _SourcesViewState extends State<SourcesView> with SingleTickerProviderStateMixin {
+  Source? selectedSource;
+  Future<ArticlesResponse>? articlesFuture;
+  Future<SourcesResponse>? sourcesFuture;
+  TabController? tabController;
+  List<Source> sources = [];
+
+  @override
+  void initState() {
+    super.initState();
+    sourcesFuture = ApiServices.getSources(widget.category);
+  }
+
+  void changeSource(Source source, int index) {
+    setState(() {
+      selectedSource = source;
+      articlesFuture = ApiServices.getArticles(source);
+    });
+    tabController?.animateTo(index);
+  }
+
+  @override
+  void dispose() {
+    tabController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,41 +51,79 @@ class _SourcesViewState extends State<SourcesView> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          FutureBuilder(future: ApiServices.getSources(widget.category),
-          builder: (context,snapshot)
-           {
-             if(snapshot.connectionState == ConnectionState.waiting)
-               {
-                 return const Center(child: CircularProgressIndicator(),);
-               }
-             if(snapshot.hasError)
-               {
-                 return Center(child: Text('error'),);
-               }
+          FutureBuilder(
+            future: sourcesFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: Text('error'));
+              }
 
-             List<Source> sources = snapshot.data?.sources ?? [];
-             return DefaultTabController(
-               length: sources.length,
-               child: TabBar(
-                   isScrollable: true,
-                   tabAlignment: TabAlignment.start,
-                   dividerColor: Colors.transparent,
-                   indicatorColor: ColorsManager.white,
-                   labelStyle: GoogleFonts.inter(fontWeight: FontWeight.bold,fontSize: 16.sp,color: ColorsManager.white),
-                   unselectedLabelStyle: GoogleFonts.inter(fontWeight: FontWeight.w500,fontSize: 14.sp,color: ColorsManager.white),
-                   tabs: sources.map((source)=> Tab(text: source.name,)).toList()
-               ),
-             );
-           }
+              sources = snapshot.data?.sources ?? [];
+              if (sources.isEmpty) return const Center(child: Text('No sources found'));
+
+              tabController ??= TabController(
+                length: sources.length,
+                vsync: this,
+              )..addListener(() {
+                if (!tabController!.indexIsChanging) {
+                  changeSource(sources[tabController!.index], tabController!.index);
+                }
+              });
+
+              if (selectedSource == null) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  changeSource(sources[0], 0);
+                });
+              }
+
+              return TabBar(
+                controller: tabController,
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                dividerColor: Colors.transparent,
+                indicatorColor: ColorsManager.white,
+                labelStyle: GoogleFonts.inter(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.sp,
+                  color: ColorsManager.white,
+                ),
+                unselectedLabelStyle: GoogleFonts.inter(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.sp,
+                  color: ColorsManager.white,
+                ),
+                tabs: sources.map((source) => Tab(text: source.name)).toList(),
+              );
+            },
+          ),
+
+          SizedBox(height: 10.h),
+
+          Expanded(
+            child: FutureBuilder(
+              future: articlesFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return Center(child: Text(snapshot.error.toString()));
+                }
+
+                List<Articles> articles = snapshot.data?.articles ?? [];
+                return articles.isEmpty
+                    ? Center(child: Text('No articles found', style: TextStyle(color: Colors.white)))
+                    : ListView.separated(
+                  itemBuilder: (context, index) => ArticleItem(article: articles[index]),
+                  separatorBuilder: (context, index) => SizedBox(height: 10.h),
+                  itemCount: articles.length,
+                );
+              },
             ),
-          SizedBox(height: 10.h,),
-          /*Expanded(
-            child: ListView.separated(
-                itemBuilder: (context,index)=> ArticleItem(article: articles[index],),
-                separatorBuilder: (context,index)=> SizedBox(height: 10.h,),
-                itemCount: articles.length,
-            ),
-          ),*/
+          ),
         ],
       ),
     );
