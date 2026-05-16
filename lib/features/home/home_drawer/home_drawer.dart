@@ -26,6 +26,7 @@ class HomeDrawer extends StatelessWidget {
           InkWell(
             onTap: (){
               homeProvider.goToCategoriesView();
+              homeProvider.title="Home";
               Navigator.pop(context);
             },
             child: Row(

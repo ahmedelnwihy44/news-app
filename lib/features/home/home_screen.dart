@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/routes/routes_manager.dart';
 import 'package:news/features/home/home_drawer/home_drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(homeProvider.title),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+          IconButton(onPressed: (){
+            Navigator.pushNamed(context, RoutesManager.search);
+          }, icon: Icon(Icons.search)),
           SizedBox(width: 24,)
         ],
       ),
