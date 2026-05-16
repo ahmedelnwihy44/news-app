@@ -12,7 +12,7 @@ class ArticleItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, RoutesManager.newsDetails);
+        Navigator.pushNamed(context, RoutesManager.newsDetails,arguments: article);
       },
       child: Container(
         padding: EdgeInsets.all(8),

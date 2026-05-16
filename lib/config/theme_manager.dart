@@ -13,11 +13,12 @@ class ThemeManager {
       centerTitle: true,
     ),
     scaffoldBackgroundColor: ColorsManager.black,
+    cardColor: ColorsManager.white,
     textTheme: TextTheme(
-      titleMedium: GoogleFonts.inter(fontWeight: FontWeight.w500,fontSize: 24.sp,color: ColorsManager.white),
+      titleMedium: GoogleFonts.inter(fontWeight: FontWeight.w600,fontSize: 24.sp,color: ColorsManager.white),
       bodyMedium: GoogleFonts.inter(fontSize: 16.sp,fontWeight: FontWeight.bold,color: ColorsManager.white),
       bodySmall: GoogleFonts.inter(fontSize: 12.sp,fontWeight: FontWeight.w500,color: ColorsManager.grey),
-
+      displayMedium: GoogleFonts.inter(fontSize: 16.sp,fontWeight: FontWeight.w700,color: ColorsManager.black),
     )
   );
 }
