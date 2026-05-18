@@ -20,7 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
     var homeProvider = Provider.of<HomeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(homeProvider.title),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
+        title: Text(homeProvider.title,style: Theme.of(context).appBarTheme.titleTextStyle,),
         actions: [
           IconButton(onPressed: (){
             Navigator.pushNamed(context, RoutesManager.search);

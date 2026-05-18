@@ -19,16 +19,15 @@ class NewsApp extends StatelessWidget {
       designSize: Size(393, 852),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context , child)=>
-          MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute:RoutesManager.splash,
-        routes: RoutesManager.router,
-        theme: ThemeManager.light,
-        darkTheme: ThemeManager.dark,
-        themeMode: ThemeMode.dark,
-        locale: Locale("en"),
-        supportedLocales: [Locale("en"),Locale("ar")],
+      builder: (context, child) => Consumer<HomeProvider>(
+        builder: (context, homeProvider, child) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialRoute: RoutesManager.splash,
+          routes: RoutesManager.router,
+          theme: ThemeManager.light,
+          darkTheme: ThemeManager.dark,
+          themeMode: homeProvider.themeMode,
+        ),
       ),
     );
   }

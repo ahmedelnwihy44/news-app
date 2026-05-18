@@ -9,6 +9,15 @@ class HomeProvider extends ChangeNotifier{
   String title="Home";
 
 
+  ThemeMode themeMode = ThemeMode.dark;
+  bool get isDark => themeMode == ThemeMode.dark;
+  void changeTheme(String mode) {
+    if (mode == 'Dark')
+    { themeMode = ThemeMode.dark; }
+    else { themeMode = ThemeMode.light;
+    } notifyListeners();
+  }
+
   void goToSourcesView(CategoriesModel category){
     title=category.title;
     homeView = SourcesView(category: category,);
@@ -18,4 +27,4 @@ class HomeProvider extends ChangeNotifier{
     homeView = CategoriesView();
     notifyListeners();
   }
-  }
+}

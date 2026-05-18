@@ -49,19 +49,24 @@ class HomeDrawer extends StatelessWidget {
               Text("Theme",style: GoogleFonts.inter(fontSize: 20,fontWeight: FontWeight.bold,color: ColorsManager.white),)
             ],
           ),
-          SizedBox(height: 11.h,),
-
-          SizedBox(height: 24.h,),
-          Divider(color: ColorsManager.white,thickness: 2,indent: 16,endIndent: 16,),
-          SizedBox(height: 24.h,),
-          Row(
-            children: [
-              SizedBox(width: 16.w,),
-              Icon(Icons.language_outlined,color: ColorsManager.white,size: 30,),
-              SizedBox(width: 5.w,),
-              Text("Language",style: GoogleFonts.inter(fontSize: 20,fontWeight: FontWeight.bold,color: ColorsManager.white),),
-              SizedBox(height: 11.h,),
-            ],
+          SizedBox(height: 16.h,),
+          Container(
+            padding: EdgeInsets.only(right: 176, top: 12, bottom: 12, left: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: DropdownButton<String>(
+              dropdownColor: ColorsManager.white,
+              value: homeProvider.isDark ? 'Dark' : 'Light',
+              items: [
+                DropdownMenuItem(value: 'Dark', child: Text('Dark', style: TextStyle(color: Colors.black, fontSize: 24))),
+                DropdownMenuItem(value: 'Light', child: Text('Light', style: TextStyle(color: Colors.black, fontSize: 24))),
+              ],
+              onChanged: (value) {
+                homeProvider.changeTheme(value!);
+              },
+            ),
           ),
         ],
       ),

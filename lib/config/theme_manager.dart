@@ -4,8 +4,24 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news/core/resources/colors.dart';
 
 class ThemeManager {
-  static final ThemeData light = ThemeData();
+  static final ThemeData light = ThemeData(
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorsManager.white,
+      foregroundColor: ColorsManager.black,
+      titleTextStyle: GoogleFonts.inter(fontSize: 20.sp, fontWeight: FontWeight.w500, color: ColorsManager.black),
+    ),
+    scaffoldBackgroundColor: ColorsManager.white,
+    cardColor: ColorsManager.black,
+    dividerColor: ColorsManager.black,
+    textTheme: TextTheme(
+      bodyLarge: GoogleFonts.inter(fontSize: 24.sp,fontWeight: FontWeight.w600,color: ColorsManager.black),
+      bodyMedium: GoogleFonts.inter(fontSize: 16.sp, fontWeight: FontWeight.bold, color: ColorsManager.black),
+      bodySmall: GoogleFonts.inter(fontSize: 12.sp, fontWeight: FontWeight.w500, color: ColorsManager.grey),
+      displayMedium: GoogleFonts.inter(fontSize: 16.sp, fontWeight: FontWeight.w700, color: ColorsManager.white),
+    ),
+  );
   static final ThemeData dark = ThemeData(
+
     appBarTheme: AppBarTheme(
       backgroundColor: ColorsManager.black,
       foregroundColor: ColorsManager.white,
@@ -14,8 +30,9 @@ class ThemeManager {
     ),
     scaffoldBackgroundColor: ColorsManager.black,
     cardColor: ColorsManager.white,
+    dividerColor: ColorsManager.white,
     textTheme: TextTheme(
-      titleMedium: GoogleFonts.inter(fontWeight: FontWeight.w600,fontSize: 24.sp,color: ColorsManager.white),
+      bodyLarge: GoogleFonts.inter(fontSize: 24.sp,fontWeight: FontWeight.w600,color: Colors.white),
       bodyMedium: GoogleFonts.inter(fontSize: 16.sp,fontWeight: FontWeight.bold,color: ColorsManager.white),
       bodySmall: GoogleFonts.inter(fontSize: 12.sp,fontWeight: FontWeight.w500,color: ColorsManager.grey),
       displayMedium: GoogleFonts.inter(fontSize: 16.sp,fontWeight: FontWeight.w700,color: ColorsManager.black),

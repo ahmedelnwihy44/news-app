@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:news/core/resources/colors.dart';
 import 'package:news/core/resources/images.dart';
 import 'package:news/core/routes/routes_manager.dart';
+import 'package:provider/provider.dart';
+import 'package:news/providers/home_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    var homeProvider = Provider.of<HomeProvider>(context);
     return Scaffold(
       backgroundColor: ColorsManager.black,
       body: SafeArea(
@@ -30,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Spacer(),
-            Image.asset(ImagesManager.splashImage),
+            Image.asset(homeProvider.isDark? ImagesManagerDark.splashImageDark : ImagesManagerLight.splashImage),
             Spacer(),
             Center(child: Text("News App",style: TextStyle(color: Colors.white,fontSize: 26,fontWeight: FontWeight.w600),)),
             SizedBox(height: 10,),

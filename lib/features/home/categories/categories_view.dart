@@ -13,18 +13,23 @@ class _CategoriesViewState extends State<CategoriesView> {
 
   @override
   Widget build(BuildContext context) {
+
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final categories = CategoriesModel.getCategories(isDark);
+
     return Scaffold(
       body: Padding(
         padding: REdgeInsets.all(15.0),
         child: Column(
           children: [
-            Text("Good Morning\n Here is Some News For You",style: Theme.of(context).textTheme.titleMedium,),
-            SizedBox(height: 16.h,),
+            Text("Good Morning\n Here is Some News For You", style: Theme.of(context).textTheme.bodyLarge,),
+            SizedBox(height: 16.h),
             Expanded(
               child: ListView.separated(
-                  itemBuilder: (context,index)=> CategoriesItem(category: CategoriesModel.categories[index]),
-                  separatorBuilder: (context,index)=> SizedBox(height: 16.h,),
-                  itemCount: CategoriesModel.categories.length,
+                itemBuilder: (context, index) => CategoriesItem(category: categories[index]),
+                separatorBuilder: (context, index) => SizedBox(height: 16.h),
+                itemCount: categories.length,
               ),
             )
           ],

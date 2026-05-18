@@ -84,7 +84,7 @@ class _SourcesViewState extends State<SourcesView> with SingleTickerProviderStat
                 isScrollable: true,
                 tabAlignment: TabAlignment.start,
                 dividerColor: Colors.transparent,
-                indicatorColor: ColorsManager.white,
+                indicatorColor: Theme.of(context).dividerColor,
                 labelStyle: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
