@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/config/theme_manager.dart';
 import 'package:news/core/routes/routes_manager.dart';
 import 'package:provider/provider.dart';
-
 import 'providers/home_provider.dart';
 
 void main (){
