@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:news/features/details_screen/details_screen.dart';
+import 'package:news/features/home/favourite_screen/favourite_screen.dart';
 import 'package:news/features/home/home_screen.dart';
 import 'package:news/features/home/search/search.dart';
 import 'package:news/features/splash/splash_screen.dart';
@@ -11,6 +12,8 @@ class RoutesManager {
   static const String home = "/home";
   static const String newsDetails = "/newsDetails";
   static const String search = "/search";
+  static const String favourite = "/favourite";
+
 
   static Map<String, WidgetBuilder> router =
   {
@@ -18,5 +21,6 @@ class RoutesManager {
     home: (context) => HomeScreen(),
     newsDetails: (context) => NewsDetailsScreen(),
     search: (context) => Search(),
+    favourite: (context) => FavouriteScreen(),
   };
 }

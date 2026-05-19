@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news/core/resources/colors.dart';
+import 'package:news/core/routes/routes_manager.dart';
 import 'package:news/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -66,6 +67,22 @@ class HomeDrawer extends StatelessWidget {
               onChanged: (value) {
                 homeProvider.changeTheme(value!);
               },
+            ),
+          ),
+          SizedBox(height: 19.h,),
+          Divider(color: ColorsManager.white,thickness: 2,indent: 16,endIndent: 16,),
+          SizedBox(height: 19.h,),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, RoutesManager.favourite);
+            },
+            child: Row(
+              children: [
+                SizedBox(width: 16.w,),
+                Icon(Icons.favorite,color: ColorsManager.white,),
+                SizedBox(width: 5.w,),
+                Text("Go To Favorites",style: GoogleFonts.inter(fontSize: 20,fontWeight: FontWeight.bold,color: ColorsManager.white),)
+              ],
             ),
           ),
         ],
