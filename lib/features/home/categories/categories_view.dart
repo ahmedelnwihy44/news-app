@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/core/models/categories_model.dart';
 import 'package:news/features/home/categories/categories_item.dart';
+import 'package:news/providers/home_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoriesView extends StatefulWidget {
  const CategoriesView({super.key});
@@ -14,8 +16,7 @@ class _CategoriesViewState extends State<CategoriesView> {
   @override
   Widget build(BuildContext context) {
 
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-
+    bool isDark = Provider.of<HomeProvider>(context).isDark;
     final categories = CategoriesModel.getCategories(isDark);
 
     return Scaffold(

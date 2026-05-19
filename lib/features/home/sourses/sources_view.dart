@@ -85,16 +85,8 @@ class _SourcesViewState extends State<SourcesView> with SingleTickerProviderStat
                 tabAlignment: TabAlignment.start,
                 dividerColor: Colors.transparent,
                 indicatorColor: Theme.of(context).dividerColor,
-                labelStyle: GoogleFonts.inter(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.sp,
-                  color: ColorsManager.white,
-                ),
-                unselectedLabelStyle: GoogleFonts.inter(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.sp,
-                  color: ColorsManager.white,
-                ),
+                labelStyle: Theme.of(context).textTheme.bodyMedium,
+                unselectedLabelStyle: Theme.of(context).textTheme.bodySmall,
                 tabs: sources.map((source) => Tab(text: source.name)).toList(),
               );
             },
@@ -115,7 +107,7 @@ class _SourcesViewState extends State<SourcesView> with SingleTickerProviderStat
 
                 List<Articles> articles = snapshot.data?.articles ?? [];
                 return articles.isEmpty
-                    ? Center(child: Text('No articles found', style: TextStyle(color: Colors.white)))
+                    ? Center(child: Text('No articles found', style: TextStyle(color: Theme.of(context).textTheme.titleSmall?.color)))
                     : ListView.separated(
                   itemBuilder: (context, index) => ArticleItem(article: articles[index]),
                   separatorBuilder: (context, index) => SizedBox(height: 10.h),

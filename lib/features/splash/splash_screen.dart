@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:news/core/resources/colors.dart';
 import 'package:news/core/resources/images.dart';
 import 'package:news/core/routes/routes_manager.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var homeProvider = Provider.of<HomeProvider>(context);
     return Scaffold(
-      backgroundColor: ColorsManager.black,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,9 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
             Spacer(),
             Image.asset(homeProvider.isDark? ImagesManagerDark.splashImageDark : ImagesManagerLight.splashImage),
             Spacer(),
-            Center(child: Text("News App",style: TextStyle(color: Colors.white,fontSize: 26,fontWeight: FontWeight.w600),)),
+            Center(child: Text("News App",style: Theme.of(context).textTheme.bodyLarge,)),
             SizedBox(height: 10,),
-            Center(child: Text("Supervised by Ahmed Elnwihy",style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w400),)),
+            Center(child: Text("Supervised by Flutter",style: Theme.of(context).textTheme.bodySmall,)),
           ],
         ),
       ),

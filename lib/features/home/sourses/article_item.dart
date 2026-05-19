@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news/api/models/article_response/Articles.dart';
-import 'package:news/core/resources/colors.dart';
 import 'package:news/core/routes/routes_manager.dart';
 
 
@@ -17,7 +16,7 @@ class ArticleItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          border: BoxBorder.all(color: ColorsManager.white,width: 2),
+          border: BoxBorder.all(color: Theme.of(context).dividerColor,width: 2),
           borderRadius: BorderRadius.circular(16)
         ),
         child: Column(

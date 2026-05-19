@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/api/api_services.dart';
 import 'package:news/api/models/article_response/Article_response.dart';
 import 'package:news/api/models/article_response/Articles.dart';
-import 'package:news/core/resources/colors.dart';
 import 'package:news/features/home/search/text_field_widget.dart';
 import 'package:news/features/home/sourses/article_item.dart';
 
@@ -45,7 +44,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsManager.black,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         bottom: true,
         top: true,
@@ -68,7 +67,7 @@ class _SearchState extends State<Search> {
 
                     List<Articles> articles = snapshot.data?.articles ?? [];
                     return articles.isEmpty
-                        ? Center(child: Text('No articles found', style: TextStyle(color: Colors.white)))
+                        ? Center(child: Text('No articles found', style: TextStyle(color: Theme.of(context).textTheme.titleSmall?.color)))
                         : ListView.separated(
                       itemBuilder: (context, index) => ArticleItem(article: articles[index]),
                       separatorBuilder: (context, index) => SizedBox(height: 10.h),

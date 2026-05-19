@@ -9,13 +9,13 @@ class TextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       onChanged: (value)=>onSearch(value),
-        style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400),
+        style: Theme.of(context).textTheme.titleSmall,
         decoration: InputDecoration(
-          label: Text("Search",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w500),),
-          prefixIcon: Icon(Icons.search,color: Colors.white,),
+          label: Text("Search",style: TextStyle(color: Theme.of(context).textTheme.titleSmall?.color,fontSize: 20,fontWeight: FontWeight.w500),),
+          prefixIcon: Icon(Icons.search,color: Theme.of(context).iconTheme.color,),
           suffixIcon: IconButton(onPressed: (){
             Navigator.pop(context);
-          },icon: Icon(Icons.close),color: Colors.white,),
+          },icon: Icon(Icons.close),color: Theme.of(context).iconTheme.color,),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(color: ColorsManager.grey),

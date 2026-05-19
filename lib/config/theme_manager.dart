@@ -10,16 +10,29 @@ class ThemeManager {
       foregroundColor: ColorsManager.black,
       titleTextStyle: GoogleFonts.inter(fontSize: 20.sp, fontWeight: FontWeight.w500, color: ColorsManager.black),
     ),
+
+
     scaffoldBackgroundColor: ColorsManager.white,
     cardColor: ColorsManager.black,
     dividerColor: ColorsManager.black,
+    iconTheme: IconThemeData(color: ColorsManager.black) ,
+
+
     textTheme: TextTheme(
       bodyLarge: GoogleFonts.inter(fontSize: 24.sp,fontWeight: FontWeight.w600,color: ColorsManager.black),
       bodyMedium: GoogleFonts.inter(fontSize: 16.sp, fontWeight: FontWeight.bold, color: ColorsManager.black),
-      bodySmall: GoogleFonts.inter(fontSize: 12.sp, fontWeight: FontWeight.w500, color: ColorsManager.grey),
+      bodySmall: GoogleFonts.inter(fontSize: 14.sp, fontWeight: FontWeight.w500, color: ColorsManager.black),
       displayMedium: GoogleFonts.inter(fontSize: 16.sp, fontWeight: FontWeight.w700, color: ColorsManager.white),
+      titleSmall:GoogleFonts.inter(color: ColorsManager.black,fontSize: 20,fontWeight: FontWeight.w400),
+
+
     ),
   );
+
+
+
+
+
   static final ThemeData dark = ThemeData(
 
     appBarTheme: AppBarTheme(
@@ -28,14 +41,22 @@ class ThemeManager {
       titleTextStyle: GoogleFonts.inter(fontSize: 20.sp ,fontWeight: FontWeight.w500,color: ColorsManager.white),
       centerTitle: true,
     ),
+
+
     scaffoldBackgroundColor: ColorsManager.black,
     cardColor: ColorsManager.white,
     dividerColor: ColorsManager.white,
+    iconTheme: IconThemeData(color: ColorsManager.white) ,
+
+
+
     textTheme: TextTheme(
       bodyLarge: GoogleFonts.inter(fontSize: 24.sp,fontWeight: FontWeight.w600,color: Colors.white),
       bodyMedium: GoogleFonts.inter(fontSize: 16.sp,fontWeight: FontWeight.bold,color: ColorsManager.white),
-      bodySmall: GoogleFonts.inter(fontSize: 12.sp,fontWeight: FontWeight.w500,color: ColorsManager.grey),
+      bodySmall: GoogleFonts.inter(fontSize: 14.sp,fontWeight: FontWeight.w500,color: ColorsManager.white),
       displayMedium: GoogleFonts.inter(fontSize: 16.sp,fontWeight: FontWeight.w700,color: ColorsManager.black),
-    )
+      titleSmall:GoogleFonts.inter(color: ColorsManager.white,fontSize: 20,fontWeight: FontWeight.w400),
+    ),
+
   );
 }
