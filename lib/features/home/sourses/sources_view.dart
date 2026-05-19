@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:news/api/api_services.dart';
 import 'package:news/api/models/article_response/Article_response.dart';
 import 'package:news/api/models/article_response/Articles.dart';
 import 'package:news/api/models/sources_respons/Source.dart';
 import 'package:news/api/models/sources_respons/Sources_response.dart';
 import 'package:news/core/models/categories_model.dart';
-import 'package:news/core/resources/colors.dart';
 import 'package:news/features/home/sourses/article_item.dart';
 
 class SourcesView extends StatefulWidget {
