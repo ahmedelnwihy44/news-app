@@ -5,9 +5,12 @@ import 'package:news/core/routes/routes_manager.dart';
 import 'package:provider/provider.dart';
 import 'providers/home_provider.dart';
 
-void main (){
+void main ()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final homeProvider = HomeProvider();
+  await homeProvider.loadTheme();
   runApp(ChangeNotifierProvider(
-      create: (context) => HomeProvider(),
+      create: (context) => homeProvider,
       child: const NewsApp()));
 }
 class NewsApp extends StatelessWidget {
